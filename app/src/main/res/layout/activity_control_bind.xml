@@ -1,0 +1,225 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layout_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/main_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:paddingTop="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_item_height"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="设备名称"
+                    style="@style/main_item_title" />
+                <EditText
+                    android:id="@+id/bind_device_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/input_bg"
+                    android:hint="请输入"
+                    android:maxLength="16"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/main_tab_title_color"
+                    android:textColorHint="@color/main_item_desc_color"
+                    android:textSize="@dimen/main_text_16" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+                <include
+                    android:id="@+id/bind_deivce_item"
+                    layout="@layout/desc_item_layout"></include>
+                <Button
+                    android:id="@+id/bind_deivce_id"
+                    android:layout_width="@dimen/main_button_width"
+                    android:layout_height="@dimen/main_button_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_button"
+                    android:text="写入项目ID"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+                <include
+                    android:id="@+id/bind_group_item"
+                    layout="@layout/desc_item_layout"></include>
+
+                <Button
+                    android:id="@+id/bind_deivce_control_id"
+                    android:layout_width="@dimen/main_button_width"
+                    android:layout_height="@dimen/main_button_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_button"
+                    android:text="写入阀控器ID"
+                    android:textColor="@color/white"
+
+                    />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/bind_control_name_1"
+                            style="@style/main_item_title"
+                            android:text="阀门"
+                            />
+                        <TextView
+                            android:id="@+id/bind_control_num_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:text="1"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/size_18"
+                            android:layout_toRightOf="@+id/bind_control_name_1"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/bind_control_sel_1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_horizontal"
+                            android:checked="false"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/checkbox_selector"
+                            android:button="@null"
+                            />
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/white"
+                        />
+                    <include
+                        android:id="@+id/bind_control_id_1"
+                        layout="@layout/desc_item_layout"></include>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/white"
+                        />
+                    <include
+                        android:id="@+id/bind_control_alias_1"
+                        layout="@layout/input_item_layout"></include>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/bind_control_name_2"
+                            style="@style/main_item_title"
+                            android:text="阀门"
+                            />
+                        <TextView
+                            android:id="@+id/bind_control_num_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:text="1"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/size_18"
+                            android:layout_toRightOf="@+id/bind_control_name_2"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/bind_control_sel_2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_horizontal"
+                            android:checked="false"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/checkbox_selector"
+                            android:button="@null"
+                            />
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/white"
+                        />
+                    <include
+                        android:id="@+id/bind_control_id_2"
+                        layout="@layout/desc_item_layout"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/white"
+                        />
+                    <include
+                        android:id="@+id/bind_control_alias_2"
+                        layout="@layout/input_item_layout"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bind_cantrol_save"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="30dp"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
+                android:text="保存设置"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
