@@ -141,6 +141,20 @@ public class MainActivity extends SerialPortActivity {
         },4000);
 
         FloatStatusUtil.getInstance().show();
+
+        //查询有没有自动轮毂
+        List<GroupInfo> list = GroupInfoSql.queryOpenGroupList();
+        if (list != null && list.size() > 0) {
+
+            GroupInfo groupInfo = list.get(0);
+            int runTime = groupInfo.getGroupRunTime();
+            int allTime = groupInfo.getGroupTime();
+            if (runTime != 0 && runTime < allTime) {
+                // 开启自动管灌盖
+                EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_START, groupInfo));
+                LogUtils.e(TAG, "异常退出开启自动轮灌");
+            }
+        }
     }
 
 
@@ -210,12 +224,19 @@ public class MainActivity extends SerialPortActivity {
     }
 
     private void play() {
-//        try {
-//            mp = MediaPlayer.create(MainActivity.this, R.raw.alert);
-//            mp.start();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
+        if (Entiy.isPlay) {
+            try {
+                mp = MediaPlayer.create(MainActivity.this, R.raw.alert);
+                mp.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (Entiy.isSendCode) {
+
+        }
+
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.auto.di.guan.basemodel.model.respone.BaseRespone;
 import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.db.sql.GroupInfoSql;
 import com.auto.di.guan.db.sql.UserActionSql;
+import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.entity.SyncData;
 import com.auto.di.guan.utils.LogUtils;
 import com.google.gson.Gson;
@@ -35,6 +36,31 @@ public class FragmentTab12 extends BaseFragment {
 			public void onClick(View v) {
 //				activity.finish();
 				syncData();
+			}
+		});
+
+		view.findViewById(R.id.login_1).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Entiy.isPlay = true;
+			}
+		});
+		view.findViewById(R.id.login_2).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Entiy.isPlay = false;
+			}
+		});
+		view.findViewById(R.id.login_3).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Entiy.isSendCode = true;
+			}
+		});
+		view.findViewById(R.id.login_4).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Entiy.isSendCode = false;
 			}
 		});
 		return view;

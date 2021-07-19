@@ -39,9 +39,9 @@ public class GroupEditListAdapter extends BaseQuickAdapter<ControlInfo, BaseView
         holder.getView(R.id.group_edit_del).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (valveStatus == Entiy.CONTROL_STATUS＿RUN || valveStatus == Entiy.CONTROL_STATUS＿ERROR) {
-                    Toast.makeText(getContext(), "阀控器处于不可以编辑状态", Toast.LENGTH_LONG).show();
-                } else {
+//                if (valveStatus == Entiy.CONTROL_STATUS＿RUN || valveStatus == Entiy.CONTROL_STATUS＿ERROR) {
+//                    Toast.makeText(getContext(), "阀控器处于不可以编辑状态", Toast.LENGTH_LONG).show();
+//                } else {
                     MainShowDialog.ShowDialog((Activity) getContext(), "退出分组", "是退出当前分组", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -58,7 +58,7 @@ public class GroupEditListAdapter extends BaseQuickAdapter<ControlInfo, BaseView
                         }
                     });
 
-                }
+//                }
             }
         });
     }

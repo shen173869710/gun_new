@@ -12,6 +12,7 @@ import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.db.sql.GroupInfoSql;
 import com.auto.di.guan.db.sql.UserSql;
 import com.auto.di.guan.entity.Entiy;
+import com.auto.di.guan.event.GroupStatusEvent;
 import com.auto.di.guan.jobqueue.TaskEntiy;
 import com.auto.di.guan.jobqueue.TaskManager;
 import com.auto.di.guan.event.AutoTaskEvent;
@@ -333,6 +334,9 @@ public class TaskFactory {
         groupInfo.setGroupStatus(Entiy.GROUP_STATUS_OPEN);
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
+        EventBus.getDefault().post(new AutoTaskEvent(groupInfo));
+        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
+
         //  2. 获取所有组的设备
         ArrayList<ControlInfo> openList = getControlInfo(groupInfo);
         if (openList.size() == 0) {
@@ -393,6 +397,10 @@ public class TaskFactory {
         groupInfo.setGroupTime(0);
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
+
+        EventBus.getDefault().post(new AutoTaskEvent(groupInfo));
+        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
+
         MessageSend.syncAuto(MessageEntiy.TYPE_AUTO_STATUS);
         //  2. 获取组的设备信息
         ArrayList<ControlInfo> closeList  = getControlInfo(groupInfo);

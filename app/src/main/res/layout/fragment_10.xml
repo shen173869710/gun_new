@@ -3,24 +3,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".MainActivity" >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+   >
 
 
-    <Button
-        android:id="@+id/login_out"
-        android:layout_width="@dimen/main_button_width"
-        android:layout_height="@dimen/main_button_height"
-        android:text="施肥管理"
 
-        android:gravity="center"
+
+
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerInParent="true"
+        >
+        <Button
+            android:id="@+id/login_out"
+            android:layout_width="@dimen/main_button_width"
+            android:layout_height="@dimen/main_button_height"
+            android:text="同步数据"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_buttom_rect"
+            />
+        <Button
+            android:id="@+id/login_1"
+            android:layout_width="@dimen/main_button_width"
+            android:layout_height="@dimen/main_button_height"
+            android:text="开启报警声音"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
 
-        android:textColor="@color/white"
-        android:background="@drawable/bg_red_buttom_rect"
-        />
-    </RelativeLayout>
+            android:background="@drawable/bg_red_buttom_rect"
+            />
+        <Button
+            android:id="@+id/login_2"
+            android:layout_width="@dimen/main_button_width"
+            android:layout_height="@dimen/main_button_height"
+            android:text="关闭报警声音"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_buttom_rect"
+            />
+        <Button
+            android:id="@+id/login_3"
+            android:layout_width="@dimen/main_button_width"
+            android:layout_height="@dimen/main_button_height"
+            android:text="开启短信通知"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_buttom_rect"
+            />
+        <Button
+            android:id="@+id/login_4"
+            android:layout_width="@dimen/main_button_width"
+            android:layout_height="@dimen/main_button_height"
+            android:text="关闭短信通知"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_buttom_rect"
+            />
+    </LinearLayout>
 </RelativeLayout>

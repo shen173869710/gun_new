@@ -118,6 +118,8 @@ public class FragmentTab2 extends BaseFragment {
 		groupLists.clear();
 		groupInfos = GroupInfoSql.queryGroupList();
 		deviceInfos = DeviceInfoSql.queryDeviceList();
+
+
 		int size = deviceInfos.size();
 		controlInfos.clear();
 		for (int i = 0; i < size; i++) {

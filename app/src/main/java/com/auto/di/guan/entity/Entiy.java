@@ -12,6 +12,11 @@ import com.auto.di.guan.utils.LogUtils;
  * 4. 界面同步
  */
 public class Entiy {
+
+    /// 是否开启警报
+    public  static  boolean isPlay = true;
+    /// 是否开启警报
+    public  static  boolean isSendCode = false;
     //    /*设置项目的行数*/
 //    public static  int GUN_ROW = 5;
     /*设置项目的列数*/

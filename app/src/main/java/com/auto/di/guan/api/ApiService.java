@@ -7,6 +7,7 @@ import com.auto.di.guan.basemodel.model.respone.LoginRespone;
 import com.auto.di.guan.basemodel.model.respone.MeteoRespone;
 import com.auto.di.guan.db.User;
 import com.auto.di.guan.entity.SyncData;
+import com.auto.di.guan.entity.TableDataInfo;
 
 import java.util.Map;
 import io.reactivex.Observable;
@@ -61,4 +62,12 @@ public interface ApiService {
     Observable<MeteoRespone> getDeviceInfo(@Path("sn") String sn);
     @GET("/v3/device/{sn}/data")
     Observable<ERespone> getDeviceData(@Path("sn") String sn);
+
+    /**
+     *  发送预计信息
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/api/send/smsMsg")
+    Observable<BaseRespone> sendSmsMsg(@FieldMap Map<String, Object> map);
 }
