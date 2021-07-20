@@ -63,11 +63,12 @@ public class FragmentTab0 extends BaseFragment {
                         @Override
                         public void onClick(View v) {
                             info.unBindDevice(info.getDeviceId());
+                            DeviceInfoSql.updateDevice(info);
+                            adapter.setNewData(DeviceInfoSql.queryDeviceList());
                         }
                     });
                 }
-                DeviceInfoSql.updateDevice(info);
-                adapter.setNewData(DeviceInfoSql.queryDeviceList());
+
             }
         });
         LogUtils.e("fragment","     73--"+System.currentTimeMillis());

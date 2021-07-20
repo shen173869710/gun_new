@@ -218,7 +218,7 @@ public class ControlBindActivity extends Activity implements View.OnClickListene
                     controlInfo_0.setValveId(info.getDeviceSort() * 2 - 1);
                     controlInfo_0.setProtocalId("0");
                     controlInfo_0.setDeviceProtocalId(info.getProtocalId());
-                    DeviceInfoSql.updateDevice(info);
+
                 } else {
                     controlInfo_0.setValveStatus(0);
                     controlInfo_0.setValveId(0);
@@ -231,11 +231,11 @@ public class ControlBindActivity extends Activity implements View.OnClickListene
                     controlInfo_1.setValveId(info.getDeviceId() * 2);
                     controlInfo_1.setDeviceProtocalId(info.getProtocalId());
                     controlInfo_1.setProtocalId("1");
-                    DeviceInfoSql.updateDevice(info);
                 } else {
                     controlInfo_1.setValveStatus(0);
                     controlInfo_1.setValveId(0);
                 }
+                DeviceInfoSql.updateDevice(info);
                 EventBus.getDefault().post(new BindIdEvent());
                 finish();
                 break;

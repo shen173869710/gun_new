@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.auto.di.guan.adapter.ChooseGridAdapter;
+import com.auto.di.guan.adapter.ControlGridAdapter;
+import com.auto.di.guan.db.ControlInfo;
 import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.GroupInfo;
 import com.auto.di.guan.db.LevelInfo;
@@ -110,11 +112,13 @@ public class ChooseGroupctivity extends Activity {
 				LevelInfoSql.updateLevelInfo(levelInfos.get(0));
 			}
 			for (int i = 0; i < size; i++) {
-				if (deviceInfos.get(i).getValveDeviceSwitchList().get(0).isSelect()) {
-					deviceInfos.get(i).getValveDeviceSwitchList().get(0).setValveGroupId(groupId);
+				ControlInfo info0 = deviceInfos.get(i).getValveDeviceSwitchList().get(0);
+				ControlInfo info1 = deviceInfos.get(i).getValveDeviceSwitchList().get(1);
+				if (info0.getValveGroupId() == 0 && info0.isSelect()){
+					info0.setValveGroupId(groupId);
 				}
-				if (deviceInfos.get(i).getValveDeviceSwitchList().get(1).isSelect()) {
-					deviceInfos.get(i).getValveDeviceSwitchList().get(1).setValveGroupId(groupId);
+				if (info1.getValveGroupId() == 0 && info1.isSelect()){
+					info1.setValveGroupId(groupId);
 				}
 			}
 			DeviceInfoSql.updateDeviceList(deviceInfos);
