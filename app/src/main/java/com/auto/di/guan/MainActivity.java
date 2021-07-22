@@ -13,7 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.auto.di.guan.api.ApiUtil;
+import com.auto.di.guan.api.GlobalConstant;
 import com.auto.di.guan.api.HttpManager;
+import com.auto.di.guan.basemodel.model.request.BaseRequest;
 import com.auto.di.guan.basemodel.model.respone.BaseRespone;
 import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.GroupInfo;
@@ -51,6 +53,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.TreeMap;
 
 public class MainActivity extends SerialPortActivity {
     private final String TAG = "------" + MainActivity.class.getSimpleName();
@@ -234,7 +237,7 @@ public class MainActivity extends SerialPortActivity {
             }
         }
         if (Entiy.isSendCode) {
-
+                sendMessage();
         }
 
     }
@@ -512,6 +515,24 @@ public class MainActivity extends SerialPortActivity {
     public void onDelayEvent(DelayEvent event) {
         LogUtils.e("mainActivity",  "延时任务启动----------------------------");
         TaskManager.getInstance().doNextTask();
+    }
+
+
+    private void sendMessage() {
+            TreeMap<String, Object> treeMap = new TreeMap<>();
+        treeMap.put("mobile", Entiy.PHONE);
+        treeMap.put("content","1111111111");
+
+    HttpManager.newApi(ApiUtil.createApiService().sendSmsMsg(BaseRequest.toMerchantTreeMap(treeMap)), new HttpManager.OnResultListener() {
+        @Override
+        public void onSuccess(BaseRespone respone) {
+
+        }
+        @Override
+        public void onError(Throwable error, Integer code,String msg) {
+
+        }
+    });
     }
 
 

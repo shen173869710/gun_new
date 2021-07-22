@@ -63,11 +63,36 @@ public interface ApiService {
     @GET("/v3/device/{sn}/data")
     Observable<ERespone> getDeviceData(@Path("sn") String sn);
 
+
     /**
      *  发送预计信息
      * @return
+     *
+     *
+     * @NotBlank(message = "手机号码不能为空")
+     *  private String mobile;
+     *
+     *  @NotBlank(message = "短信内容不能为空")
+     *  private String content;
      */
     @FormUrlEncoded
     @POST("/api/send/smsMsg")
     Observable<BaseRespone> sendSmsMsg(@FieldMap Map<String, Object> map);
+
+//    TreeMap<String, Object> treeMap = new TreeMap<>();
+//        treeMap.put("mobile","18675570791");
+//        treeMap.put("content","1111111111");
+//    //        treeMap.put("pageNum",1);
+////        treeMap.put("pageSize",2);
+//    doHttpTask(getApiService().sendSmsMsg(BaseRequest.toMerchantTreeMap(treeMap)), new HttpManager.OnResultListener() {
+//        @Override
+//        public void onSuccess(BaseRespone respone) {
+//            getBaseView().success(respone);
+//        }
+//        @Override
+//        public void onError(Throwable error, Integer code,String msg) {
+//            getBaseView().fail(error,code,msg);
+//        }
+//    });
+
 }

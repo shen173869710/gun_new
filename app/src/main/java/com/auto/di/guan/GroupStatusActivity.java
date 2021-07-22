@@ -1,6 +1,7 @@
 package com.auto.di.guan;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.auto.di.guan.event.ActivityEvent;
 import com.auto.di.guan.event.AutoCountEvent;
 import com.auto.di.guan.event.AutoTaskEvent;
 import com.auto.di.guan.event.GroupStatusEvent;
+import com.auto.di.guan.event.UserStatusEvent;
 import com.auto.di.guan.jobqueue.TaskManager;
 import com.auto.di.guan.jobqueue.task.TaskFactory;
 import com.auto.di.guan.rtm.MessageEntiy;
@@ -212,6 +214,23 @@ public class GroupStatusActivity extends FragmentActivity  {
             finish();
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUserStatusEvent(UserStatusEvent event) {
+        if (event == null || TextUtils.isEmpty(event.getPeerId())) {
+            return;
+        }
+        if (event.getPeerId().equals(BaseApp.getUser().getMemberId().toString())) {
+            if (event.getStatus() == 0) {
+                LogUtils.e("groupstatusActivity", "管理员在线");
+                BaseApp.setWebLogin(true);
+            }else {
+                LogUtils.e("", "管理员离线");
+                group_status_view.setVisibility(View.GONE);
+            }
+        }
+    }
+
 
     @Override
     protected void onDestroy() {

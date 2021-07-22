@@ -12,7 +12,8 @@ import com.auto.di.guan.utils.LogUtils;
  * 4. 界面同步
  */
 public class Entiy {
-
+    // 电话信息
+    public static String PHONE = "13138888127";
     /// 是否开启警报
     public  static  boolean isPlay = true;
     /// 是否开启警报
