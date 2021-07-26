@@ -339,11 +339,11 @@ public class BaseApp extends MultiDexApplication {
 
 
     public static String getProjectId() {
-//        if (user == null){
-//            getUser();
-//        }
-//      return user.getProjectGroupId();
-        return "00003";
+        if (user == null){
+            getUser();
+        }
+      return user.getProjectGroupId();
+//        return "00003";
     }
 
 

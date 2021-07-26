@@ -334,8 +334,8 @@ public class TaskFactory {
         groupInfo.setGroupStatus(Entiy.GROUP_STATUS_OPEN);
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
-        EventBus.getDefault().post(new AutoTaskEvent(groupInfo));
-        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
+        EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_START,groupInfo));
+//        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
 
         //  2. 获取所有组的设备
         ArrayList<ControlInfo> openList = getControlInfo(groupInfo);
@@ -366,7 +366,10 @@ public class TaskFactory {
         curInfo.setGroupStatus(Entiy.GROUP_STATUS_OPEN);
         curInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(curInfo);
+
         EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_NEXT));
+
+        EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_START,curInfo));
         MessageSend.syncAuto(MessageEntiy.TYPE_AUTO_STATUS);
         //  2. 获取所有组的设备
         ArrayList<ControlInfo> openList = getControlInfo(curInfo);
@@ -398,8 +401,8 @@ public class TaskFactory {
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
 
-        EventBus.getDefault().post(new AutoTaskEvent(groupInfo));
-        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
+//        EventBus.getDefault().post(new AutoTaskEvent(groupInfo));
+//        EventBus.getDefault().post(new GroupStatusEvent(groupInfo));
 
         MessageSend.syncAuto(MessageEntiy.TYPE_AUTO_STATUS);
         //  2. 获取组的设备信息

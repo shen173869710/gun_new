@@ -148,7 +148,7 @@ public class MessageSend {
      *   同步自动轮灌时间
      */
     public static void syncAutoTimeCount(GroupInfo groupInfo) {
-        LogUtils.e(TAG, "同步自动轮灌时间");
+//        LogUtils.e(TAG, "同步自动轮灌时间");
         MessageInfo info = new MessageInfo();
         info.setType(MessageEntiy.TYPE_TIME_COUNT);
         info.setGroupInfo(groupInfo);

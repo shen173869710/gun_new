@@ -488,7 +488,7 @@ public class MainActivity extends SerialPortActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGroupStatusEvent(GroupStatusEvent event) {
-        LogUtils.e("GroupStatusActivity",  "更新设备-----------------------------\n"+(new Gson().toJson(event)));
+        LogUtils.i("GroupStatusActivity",  "更新设备-----------------------------\n"+(new Gson().toJson(event)));
         if (event != null && event.getGroupInfo() != null) {
            FloatStatusUtil.getInstance().onGroupStatusEvent(event.getGroupInfo());
         }
@@ -500,7 +500,7 @@ public class MainActivity extends SerialPortActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onAutoCountEvent(AutoCountEvent event) {
-        LogUtils.e("GroupStatusActivity",  "更新设备-----------------------------\n"+(new Gson().toJson(event)));
+        LogUtils.i("GroupStatusActivity",  "更新设备-----------------------------\n"+(new Gson().toJson(event)));
         if (event != null && event.getGroupInfo() != null) {
             FloatStatusUtil.getInstance().onAutoCountEvent(event.getGroupInfo());
         }
