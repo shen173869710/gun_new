@@ -195,4 +195,15 @@ public class MessageSend {
         send(info);
         LogUtils.e(TAG, "同步农田信息");
     }
+
+    /**
+     *   同步农田信息item
+     */
+    public static void syncUpdate(String type) {
+        MessageInfo info = new MessageInfo();
+        info.setType(MessageEntiy.TYPE_DO_UPDATE);
+        info.setSnType(type);
+        send(info);
+        LogUtils.e(TAG, "同步本地操作数据数据");
+    }
 }

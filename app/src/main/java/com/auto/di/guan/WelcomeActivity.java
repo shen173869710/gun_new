@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.auto.di.guan.entity.Entiy;
+
 public class WelcomeActivity extends Activity{
 
 	@Override
@@ -16,6 +18,7 @@ public class WelcomeActivity extends Activity{
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
+					Entiy.GUN_COLUMN = BaseApp.getUser().getTrunkPipeMaxNum();
 					startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
 					finish();
 				}
