@@ -29,7 +29,7 @@ import com.auto.di.guan.utils.GsonUtil;
 import com.auto.di.guan.utils.LogUtils;
 import com.auto.di.guan.utils.SPUtils;
 import com.google.gson.Gson;
-import com.tencent.bugly.crashreport.CrashReport;
+//import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 
@@ -87,7 +87,7 @@ public class BaseApp extends MultiDexApplication {
         LogUtils.setFilterLevel(LogUtils.ALL);
         FloatWindowUtil.getInstance().initFloatWindow(this);
         FloatStatusUtil.getInstance().initFloatWindow(this);
-        CrashReport.initCrashReport(getApplicationContext(), "d1930c180d", false);
+//        CrashReport.initCrashReport(getApplicationContext(), "d1930c180d", false);
         CrashHandler.getInstance().init(this);
         mChatManager = new ChatManager(this);
         mChatManager.init();
@@ -342,8 +342,8 @@ public class BaseApp extends MultiDexApplication {
         if (user == null){
             getUser();
         }
-      return user.getProjectGroupId();
-//        return "00003";
+//      return user.getProjectGroupId();
+        return "00003";
     }
 
 
