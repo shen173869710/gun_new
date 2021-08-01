@@ -3,6 +3,9 @@ package com.auto.di.guan.rtm;
 import android.text.TextUtils;
 
 import com.auto.di.guan.BaseApp;
+import com.auto.di.guan.api.ApiUtil;
+import com.auto.di.guan.api.HttpManager;
+import com.auto.di.guan.basemodel.model.respone.BaseRespone;
 import com.auto.di.guan.db.ControlInfo;
 import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.GroupInfo;
@@ -11,8 +14,10 @@ import com.auto.di.guan.db.sql.ControlInfoSql;
 import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.db.sql.GroupInfoSql;
 import com.auto.di.guan.db.sql.LevelInfoSql;
+import com.auto.di.guan.db.sql.UserActionSql;
 import com.auto.di.guan.entity.BengOptionEvent;
 import com.auto.di.guan.entity.Entiy;
+import com.auto.di.guan.entity.SyncData;
 import com.auto.di.guan.event.ActivityEvent;
 import com.auto.di.guan.event.ActivityItemEvent;
 import com.auto.di.guan.event.TabClickEvent;
@@ -169,6 +174,12 @@ public class MessageParse {
                  *  农田信息item点击
                  */
                 EventBus.getDefault().post(new ActivityItemEvent(info.getIndex()));
+                break;
+            case MessageEntiy.TYPE_DO_UPDATE:
+                /**
+                 *  同步信息到服务器
+                 */
+                doUpdate();
                 break;
         }
     }
@@ -488,5 +499,30 @@ public class MessageParse {
      */
     public static void dealBengOpen(int postion, boolean open) {
         EventBus.getDefault().post(new BengOptionEvent(postion,open));
+    }
+
+    public static void doUpdate() {
+        SyncData data = new SyncData();
+        data.setDevices(DeviceInfoSql.queryDeviceList());
+        data.setActions(UserActionSql.queryUserActionlList());
+        data.setGroups(GroupInfoSql.queryGroupList());
+
+        LogUtils.e("分组 -----",new Gson().toJson(GroupInfoSql.queryGroupList()));
+
+        HttpManager.syncData(ApiUtil.createApiService().sync(data), new HttpManager.OnResultListener() {
+            @Override
+            public void onSuccess(BaseRespone t) {
+
+                MessageSend.syncUpdate("1");
+                LogUtils.e("", "同步数据成功");
+            }
+
+            @Override
+            public void onError(Throwable error, Integer code, String msg) {
+                LogUtils.e("", "同步数据失败");
+                MessageSend.syncUpdate("0");
+            }
+        });
+
     }
 }

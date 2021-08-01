@@ -10,6 +10,8 @@ import com.auto.di.guan.entity.SyncData;
 import com.auto.di.guan.entity.TableDataInfo;
 
 import java.util.Map;
+import java.util.TreeMap;
+
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
@@ -94,5 +96,4 @@ public interface ApiService {
 //            getBaseView().fail(error,code,msg);
 //        }
 //    });
-
 }

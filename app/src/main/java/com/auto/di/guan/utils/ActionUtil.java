@@ -63,6 +63,7 @@ public class ActionUtil {
 		}else {
 			action.setActionStatus(0);
 		}
+
 		LogUtils.e(TAG,"----------插入数据");
 		UserActionSql.insertUserAction(action);
 		List<UserAction> actions = UserActionSql.queryUserActionlList();

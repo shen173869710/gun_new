@@ -2,6 +2,7 @@ package com.auto.di.guan;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Entity;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
