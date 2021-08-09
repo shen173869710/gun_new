@@ -190,7 +190,8 @@ public class SendUtils {
      */
     public static  void sendReadStart( String desc, ControlInfo info) {
         CmdStatus cmdStatus = new CmdStatus();
-        cmdStatus.setControlName(info.getValveAlias());
+        cmdStatus.setControlName(info.getValveName());
+        cmdStatus.setControlAlias(info.getValveAlias());
         cmdStatus.setCmd_read_start(LOG_READ_START+desc);
         cmdStatus.setControl_id(info.getValveId());
         EventBus.getDefault().post(cmdStatus);
@@ -202,7 +203,8 @@ public class SendUtils {
      */
     public static  void sendReadMiddle( String desc, ControlInfo info) {
         CmdStatus cmdStatus = new CmdStatus();
-        cmdStatus.setControlName(info.getValveAlias());
+        cmdStatus.setControlName(info.getValveName());
+        cmdStatus.setControlAlias(info.getValveAlias());
         cmdStatus.setCmd_read_middle(LOG_READ_SUC+desc);
         cmdStatus.setControl_id(info.getValveId());
         EventBus.getDefault().post(cmdStatus);
@@ -214,7 +216,8 @@ public class SendUtils {
      */
     public static  void sendReadTryMiddle( String desc, ControlInfo info) {
         CmdStatus cmdStatus = new CmdStatus();
-        cmdStatus.setControlName(info.getValveAlias());
+        cmdStatus.setControlName(info.getValveName());
+        cmdStatus.setControlAlias(info.getValveAlias());
         cmdStatus.setCmd_read_middle(LOG_READ_RET+desc);
         cmdStatus.setControl_id(info.getValveId());
         EventBus.getDefault().post(cmdStatus);

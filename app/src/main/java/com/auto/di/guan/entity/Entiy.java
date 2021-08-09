@@ -33,7 +33,7 @@ public class Entiy {
     /**
      * 数据保存本地时间间隔 单位毫秒
      */
-    public static final int DB_SAVE_TIME = 1 * 60 * 1000;
+    public static final int DB_SAVE_TIME = 50;
     /**
      * 自动查询 时间间隔 单位秒
      **/

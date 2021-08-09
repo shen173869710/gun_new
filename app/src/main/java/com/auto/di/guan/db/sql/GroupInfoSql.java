@@ -4,7 +4,9 @@ import com.auto.di.guan.BaseApp;
 import com.auto.di.guan.db.GroupInfo;
 import com.auto.di.guan.db.greendao.DaoSession;
 import com.auto.di.guan.db.greendao.GroupInfoDao;
+import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.rtm.MessageSend;
+import com.auto.di.guan.utils.LogUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -150,12 +152,13 @@ public class GroupInfoSql extends BaseSql {
      *   更新当前的group
      */
     public static void updateRunGroup (GroupInfo groupInfo){
-//        if (groupInfo.getGroupRunTime() % Entiy.DB_SAVE_TIME== 0) {
-//
-//
-//        }
-        GroupInfoSql.updateGroup(groupInfo);
         MessageSend.syncAutoTimeCount(groupInfo);
+        if (groupInfo.getGroupRunTime() % Entiy.DB_SAVE_TIME == 0) {
+            LogUtils.e("保存数据", "time = "+System.currentTimeMillis());
+            GroupInfoSql.updateGroup(groupInfo);
+        }
+
+
     }
 
 }

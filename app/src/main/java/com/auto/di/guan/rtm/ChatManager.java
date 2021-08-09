@@ -170,7 +170,17 @@ public class ChatManager {
 
 
     public void doLogout() {
-        mRtmClient.logout(null);
+        mRtmClient.logout(new ResultCallback<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                LogUtils.e("ChatManager", "doLogout onSuccess()");
+            }
+
+            @Override
+            public void onFailure(ErrorInfo errorInfo) {
+                LogUtils.e("ChatManager", "doLogout onFailure()"+errorInfo.getErrorCode());
+            }
+        });
         MessageUtil.cleanMessageListBeanList();
     }
 

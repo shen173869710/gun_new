@@ -242,9 +242,12 @@ public class MainActivity extends SerialPortActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+
+    private void dologOut() {
+        LogUtils.e(TAG, "dologOut"+chatManager);
+        if (chatManager != null) {
+            chatManager.doLogout();
+        }
         EventBus.getDefault().unregister(this);
         if (handler != null) {
             handler.removeMessages(HANDLER_WHAT_FALG);
@@ -253,10 +256,28 @@ public class MainActivity extends SerialPortActivity {
         PollingUtils.stopPollingService(this);
         FloatWindowUtil.getInstance().distory();
 
+
+        InputPasswordDialog.dismiss(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.e(TAG, "onDestroy"+chatManager);
         if (chatManager != null) {
             chatManager.doLogout();
         }
+        EventBus.getDefault().unregister(this);
+        if (handler != null) {
+            handler.removeMessages(HANDLER_WHAT_FALG);
+            handler = null;
+        }
+        PollingUtils.stopPollingService(this);
+        FloatWindowUtil.getInstance().distory();
+
+
         InputPasswordDialog.dismiss(this);
+
     }
 
     /**
@@ -414,7 +435,9 @@ public class MainActivity extends SerialPortActivity {
                 ToastUtils.showToast("再按一次退出");
                 firstTime=System.currentTimeMillis();
             }else{
+                dologOut();
                 finish();
+
                 System.exit(0);
             }
             return true;

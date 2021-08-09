@@ -24,6 +24,8 @@ import android.os.SystemClock;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.auto.di.guan.utils.LogUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -100,10 +102,16 @@ public abstract class SerialPortActivity extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		if (mReadThread != null)
-			mReadThread.interrupt();
-		mApplication.closeSerialPort();
-		mSerialPort = null;
+
+		try {
+			if (mReadThread != null)
+				mReadThread.interrupt();
+			mApplication.closeSerialPort();
+			mSerialPort = null;
+		}catch (Exception e) {
+			LogUtils.e("Ser", e.getMessage());
+		}
+
 		super.onDestroy();
 	}
 }
