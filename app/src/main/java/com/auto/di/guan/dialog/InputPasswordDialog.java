@@ -111,7 +111,7 @@ public class InputPasswordDialog extends Dialog {
             if(null ==context){
                 return;
             }
-
+            BaseApp.setWebLogin(false);
             if (context instanceof Activity) {
                 if (((Activity) context).isFinishing()) {
                     dialog = null;

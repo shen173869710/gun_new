@@ -33,7 +33,7 @@ public class Entiy {
     /**
      * 数据保存本地时间间隔 单位毫秒
      */
-    public static final int DB_SAVE_TIME = 50;
+    public static final int DB_SAVE_TIME = 100;
     /**
      * 自动查询 时间间隔 单位秒
      **/
@@ -72,7 +72,7 @@ public class Entiy {
     /**
      * 设置轮灌定时器  1000ms
      */
-    public static final int RUN_TIME_COUNT = 1000;
+    public static final int RUN_TIME_COUNT = 20000;
     /**
      * 暂停轮灌计时
      */

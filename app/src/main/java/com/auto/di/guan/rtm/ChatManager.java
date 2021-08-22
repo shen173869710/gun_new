@@ -65,7 +65,7 @@ public class ChatManager {
                         String parentId = BaseApp.getUser().getMemberId().toString();
                         LogUtils.e(TAG, "parentId =" + BaseApp.getUser().getMemberId()+ " 是否相等 =="+peerId.equals(BaseApp.getUser().getMemberId().toString()));
 //                        if (peerId.equals(parentId)) {
-                            BaseApp.setWebLogin(true);
+//                            BaseApp.setWebLogin(true);
                         BaseApp.getUser().setMemberId(Long.valueOf(peerId));
                             MessageParse.praseData(rtmMessage.getText(), peerId);
 //                        }
@@ -187,6 +187,8 @@ public class ChatManager {
 
 
     public void sendPeerMessage( String content) {
+
+        LogUtils.i(TAG, "BaseApp.isWebLogin() = "+BaseApp.isWebLogin());
         if (!BaseApp.isWebLogin()) {
             LogUtils.i(TAG, "web端未登录, 不发送消息");
             return;

@@ -47,6 +47,16 @@ public class ReadTask extends BaseTask{
     @Override
     public void errorTask() {
         LogUtils.e(TAG, "读取状态 错误 ======="+"errorTask()");
+
+        final DeviceInfo deviceInfo = DeviceInfoSql.queryDeviceById(getTaskInfo().getDeviceId());
+        if (deviceInfo != null) {
+            if (getTaskInfo().getProtocalId().equals("0")) {
+                deviceInfo.getValveDeviceSwitchList().get(0).setValveStatus(Entiy.CONTROL_STATUS＿ERROR);
+            }else if (getTaskInfo().getProtocalId().equals("1")){
+                deviceInfo.getValveDeviceSwitchList().get(1).setValveStatus(Entiy.CONTROL_STATUS＿ERROR);
+            }
+            DeviceInfoSql.updateDevice(deviceInfo);
+        }
         SendUtils.sendReadEnd(getTaskInfo(), getTaskType(),getActionType(),SendUtils.OPTION_READ_FAILE,true);
         EventBus.getDefault().post(new VideoPlayEcent(Entiy.VIDEO_CLOSE_ERROR));
         finishTask();

@@ -343,8 +343,8 @@ public class BaseApp extends MultiDexApplication {
         if (user == null){
             getUser();
         }
-//      return user.getProjectGroupId();
-        return "00003";
+      return user.getProjectGroupId();
+//        return "00003";
     }
 
 
@@ -358,6 +358,7 @@ public class BaseApp extends MultiDexApplication {
     }
 
     public static void setWebLogin(boolean webLogin) {
+        LogUtils.e("BaseApp", "深圳登陆状态"+webLogin);
         BaseApp.webLogin = webLogin;
     }
 

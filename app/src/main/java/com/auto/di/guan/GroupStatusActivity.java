@@ -223,7 +223,7 @@ public class GroupStatusActivity extends FragmentActivity  {
         if (event.getPeerId().equals(BaseApp.getUser().getMemberId().toString())) {
             if (event.getStatus() == 0) {
                 LogUtils.e("groupstatusActivity", "管理员在线");
-                BaseApp.setWebLogin(true);
+//                BaseApp.setWebLogin(true);
             }else {
                 LogUtils.e("", "管理员离线");
                 group_status_view.setVisibility(View.GONE);

@@ -76,7 +76,7 @@ public class MainActivity extends SerialPortActivity {
             GroupInfo groupInfo = null;
             if (msg.obj != null) {
                 groupInfo = (GroupInfo) msg.obj;
-                groupInfo.setGroupRunTime(groupInfo.getGroupRunTime() + 1);
+                groupInfo.setGroupRunTime(groupInfo.getGroupRunTime() + 20);
                 curRunTime = groupInfo.getGroupTime() - groupInfo.getGroupRunTime();
                 /**如果运行时间到呢,**/
                 if (groupInfo.getGroupTime() <= groupInfo.getGroupRunTime()) {
@@ -453,8 +453,8 @@ public class MainActivity extends SerialPortActivity {
         }
         if (event.getPeerId().equals(BaseApp.getUser().getMemberId().toString())) {
             if (event.getStatus() == 0) {
-                LogUtils.e(TAG, "管理员在线");
-                BaseApp.setWebLogin(true);
+//                LogUtils.e(TAG, "管理员在线");
+//                BaseApp.setWebLogin(true);
             }else {
                 LogUtils.e(TAG, "管理员离线");
                 BaseApp.setWebLogin(false);
