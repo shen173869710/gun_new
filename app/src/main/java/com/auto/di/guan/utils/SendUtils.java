@@ -274,15 +274,11 @@ public class SendUtils {
                 desc = OPTION_READ_ERROR_VALUE;
                 break;
             case OPTION_READ_CONNECT:
-                if(optionType == 2 && cmd_type == TaskEntiy.TASK_OPTION_READ) {
-                    isNormal = 1;
-                }
+                isNormal = 1;
                 desc = OPTION_READ_CONNECT_VALUE;
                 break;
             case OPTION_READ_RUN:
-                if(optionType == 2 && cmd_type == TaskEntiy.TASK_OPTION_READ) {
-                    isNormal = 1;
-                }
+                isNormal = 1;
                 desc = OPTION_READ_RUN_VALUE;
                 break;
             case OPTION_READ_DIS:

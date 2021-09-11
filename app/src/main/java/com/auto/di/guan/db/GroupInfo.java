@@ -24,14 +24,16 @@ public class GroupInfo {
     private int groupTime;
     /** 已经运行的时间**/
     private int groupRunTime;
+    /**开始时间**/
+    private long groupEndTime;
     // 是否参与轮灌设置
     private int groupIsJoin;
     /**轮灌是否已经暂停计时**/
     private int groupStop;
-    @Generated(hash = 1868659212)
+    @Generated(hash = 495944433)
     public GroupInfo(Long id, int groupId, long userId, String groupName,
             int groupStatus, int groupImage, int groupLevel, int groupTime,
-            int groupRunTime, int groupIsJoin, int groupStop) {
+            int groupRunTime, long groupEndTime, int groupIsJoin, int groupStop) {
         this.id = id;
         this.groupId = groupId;
         this.userId = userId;
@@ -41,6 +43,7 @@ public class GroupInfo {
         this.groupLevel = groupLevel;
         this.groupTime = groupTime;
         this.groupRunTime = groupRunTime;
+        this.groupEndTime = groupEndTime;
         this.groupIsJoin = groupIsJoin;
         this.groupStop = groupStop;
     }
@@ -112,6 +115,12 @@ public class GroupInfo {
     }
     public void setGroupStop(int groupStop) {
         this.groupStop = groupStop;
+    }
+    public long getGroupEndTime() {
+        return this.groupEndTime;
+    }
+    public void setGroupEndTime(long groupEndTime) {
+        this.groupEndTime = groupEndTime;
     }
 
 

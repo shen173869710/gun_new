@@ -84,7 +84,7 @@ public class GlideUtil {
                 }else {
                     resId = R.mipmap.control_down_error;
                 }
-                Glide.with(context).asGif().load(resId).into(imageView);
+                Glide.with(context).load(resId).into(imageView);
                 break;
         }
 //        if (resId == -1) {

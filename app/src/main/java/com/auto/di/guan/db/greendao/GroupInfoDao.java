@@ -33,8 +33,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
         public final static Property GroupLevel = new Property(6, int.class, "groupLevel", false, "GROUP_LEVEL");
         public final static Property GroupTime = new Property(7, int.class, "groupTime", false, "GROUP_TIME");
         public final static Property GroupRunTime = new Property(8, int.class, "groupRunTime", false, "GROUP_RUN_TIME");
-        public final static Property GroupIsJoin = new Property(9, int.class, "groupIsJoin", false, "GROUP_IS_JOIN");
-        public final static Property GroupStop = new Property(10, int.class, "groupStop", false, "GROUP_STOP");
+        public final static Property GroupEndTime = new Property(9, long.class, "groupEndTime", false, "GROUP_END_TIME");
+        public final static Property GroupIsJoin = new Property(10, int.class, "groupIsJoin", false, "GROUP_IS_JOIN");
+        public final static Property GroupStop = new Property(11, int.class, "groupStop", false, "GROUP_STOP");
     }
 
 
@@ -59,8 +60,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
                 "\"GROUP_LEVEL\" INTEGER NOT NULL ," + // 6: groupLevel
                 "\"GROUP_TIME\" INTEGER NOT NULL ," + // 7: groupTime
                 "\"GROUP_RUN_TIME\" INTEGER NOT NULL ," + // 8: groupRunTime
-                "\"GROUP_IS_JOIN\" INTEGER NOT NULL ," + // 9: groupIsJoin
-                "\"GROUP_STOP\" INTEGER NOT NULL );"); // 10: groupStop
+                "\"GROUP_END_TIME\" INTEGER NOT NULL ," + // 9: groupEndTime
+                "\"GROUP_IS_JOIN\" INTEGER NOT NULL ," + // 10: groupIsJoin
+                "\"GROUP_STOP\" INTEGER NOT NULL );"); // 11: groupStop
     }
 
     /** Drops the underlying database table. */
@@ -89,8 +91,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
         stmt.bindLong(7, entity.getGroupLevel());
         stmt.bindLong(8, entity.getGroupTime());
         stmt.bindLong(9, entity.getGroupRunTime());
-        stmt.bindLong(10, entity.getGroupIsJoin());
-        stmt.bindLong(11, entity.getGroupStop());
+        stmt.bindLong(10, entity.getGroupEndTime());
+        stmt.bindLong(11, entity.getGroupIsJoin());
+        stmt.bindLong(12, entity.getGroupStop());
     }
 
     @Override
@@ -113,8 +116,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
         stmt.bindLong(7, entity.getGroupLevel());
         stmt.bindLong(8, entity.getGroupTime());
         stmt.bindLong(9, entity.getGroupRunTime());
-        stmt.bindLong(10, entity.getGroupIsJoin());
-        stmt.bindLong(11, entity.getGroupStop());
+        stmt.bindLong(10, entity.getGroupEndTime());
+        stmt.bindLong(11, entity.getGroupIsJoin());
+        stmt.bindLong(12, entity.getGroupStop());
     }
 
     @Override
@@ -134,8 +138,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
             cursor.getInt(offset + 6), // groupLevel
             cursor.getInt(offset + 7), // groupTime
             cursor.getInt(offset + 8), // groupRunTime
-            cursor.getInt(offset + 9), // groupIsJoin
-            cursor.getInt(offset + 10) // groupStop
+            cursor.getLong(offset + 9), // groupEndTime
+            cursor.getInt(offset + 10), // groupIsJoin
+            cursor.getInt(offset + 11) // groupStop
         );
         return entity;
     }
@@ -151,8 +156,9 @@ public class GroupInfoDao extends AbstractDao<GroupInfo, Long> {
         entity.setGroupLevel(cursor.getInt(offset + 6));
         entity.setGroupTime(cursor.getInt(offset + 7));
         entity.setGroupRunTime(cursor.getInt(offset + 8));
-        entity.setGroupIsJoin(cursor.getInt(offset + 9));
-        entity.setGroupStop(cursor.getInt(offset + 10));
+        entity.setGroupEndTime(cursor.getLong(offset + 9));
+        entity.setGroupIsJoin(cursor.getInt(offset + 10));
+        entity.setGroupStop(cursor.getInt(offset + 11));
      }
     
     @Override

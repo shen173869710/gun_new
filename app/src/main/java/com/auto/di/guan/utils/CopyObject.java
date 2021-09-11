@@ -78,7 +78,6 @@ public class CopyObject {
         groupInfo.setGroupStatus(info.getGroupStatus());
         groupInfo.setGroupTime(info.getGroupTime());
         groupInfo.setGroupLevel(info.getGroupLevel());
-        groupInfo.setGroupTime(info.getGroupTime());
         groupInfo.setGroupRunTime(info.getGroupRunTime());
         groupInfo.setGroupIsJoin(info.getGroupIsJoin());
         groupInfo.setGroupStop(info.getGroupStop());

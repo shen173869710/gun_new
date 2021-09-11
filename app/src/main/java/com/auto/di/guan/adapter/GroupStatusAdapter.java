@@ -14,6 +14,8 @@ import com.auto.di.guan.dialog.OnDialogClick;
 import com.auto.di.guan.dialog.SetTimeDialog;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.event.AutoTaskEvent;
+import com.auto.di.guan.utils.DateUtils;
+import com.auto.di.guan.utils.LogUtils;
 import com.auto.di.guan.utils.NoFastClickUtils;
 import com.auto.di.guan.utils.PollingUtils;
 import com.auto.di.guan.utils.ToastUtils;
@@ -105,6 +107,7 @@ public class GroupStatusAdapter extends BaseQuickAdapter<GroupInfo, BaseViewHold
                                         return;
                                     }
                                     info.setGroupTime(i * Entiy.RUN_TIME + info.getGroupTime());
+                                    LogUtils.e("自动轮灌结束时间", DateUtils.stampToDate(info.getGroupEndTime()));
                                     GroupInfoSql.updateGroup(info);
 //                                    EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_TIME));
                                 }

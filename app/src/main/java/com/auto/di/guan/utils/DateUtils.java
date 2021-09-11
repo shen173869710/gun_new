@@ -488,5 +488,12 @@ public class DateUtils {
         }
         return week;
     }
+
+
+    public static String stampToDate (long time) {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date(time);
+        return format.format(date);
+    }
 }
 
