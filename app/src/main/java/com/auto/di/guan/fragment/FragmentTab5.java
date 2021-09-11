@@ -73,8 +73,7 @@ public class FragmentTab5 extends BaseFragment {
 					TaskFactory.createGroupCloseTask(groupInfo);
 					TaskManager.getInstance().startTask();
 
-					FloatStatusUtil.getInstance().initProgess(groupInfo
-					);
+					FloatStatusUtil.getInstance().initProgess(null);
 				}
 			}
 		});

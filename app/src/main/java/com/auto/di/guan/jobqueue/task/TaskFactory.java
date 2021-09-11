@@ -18,6 +18,7 @@ import com.auto.di.guan.jobqueue.TaskManager;
 import com.auto.di.guan.event.AutoTaskEvent;
 import com.auto.di.guan.rtm.MessageEntiy;
 import com.auto.di.guan.rtm.MessageSend;
+import com.auto.di.guan.utils.DateUtils;
 import com.auto.di.guan.utils.FloatWindowUtil;
 import com.auto.di.guan.utils.LogUtils;
 import com.auto.di.guan.utils.PollingUtils;
@@ -332,6 +333,8 @@ public class TaskFactory {
         LogUtils.e(TAG, "**********************************自动轮灌开启****************************");
         //  1. 更新当前组的状态为运行
         groupInfo.setGroupStatus(Entiy.GROUP_STATUS_OPEN);
+        groupInfo.setGroupEndTime(System.currentTimeMillis());
+        LogUtils.e("轮灌开始时间  自动开始  ===========", DateUtils.stampToDate(groupInfo.getGroupEndTime()));
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
         EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_START,groupInfo));
@@ -364,6 +367,8 @@ public class TaskFactory {
         LogUtils.e(TAG, "**********************************自动轮灌开启****************************");
         //  1. 更新当前组的状态为运行
         curInfo.setGroupStatus(Entiy.GROUP_STATUS_OPEN);
+        curInfo.setGroupEndTime(System.currentTimeMillis());
+        LogUtils.e("轮灌开始时间  自动开始  ", DateUtils.stampToDate(curInfo.getGroupEndTime()));
         curInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(curInfo);
 
@@ -436,6 +441,7 @@ public class TaskFactory {
         List<GroupInfo> groupList = GroupInfoSql.queryNextGroupList(groupInfo.getGroupId());
         groupInfo.setGroupTime(0);
         groupInfo.setGroupRunTime(0);
+        groupInfo.setGroupEndTime(0);
         groupInfo.setGroupStop(0);
         GroupInfoSql.updateGroup(groupInfo);
         if (groupList != null) {
@@ -446,7 +452,7 @@ public class TaskFactory {
             TaskManager.getInstance().startTask();
         } else {
             LogUtils.e(TAG, "*********************************自动轮灌完成 停止计时*****************************");
-
+            LogUtils.e("轮灌开始时间  结束时间  ===========", DateUtils.stampToDate(System.currentTimeMillis()));
             EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_FINISH));
             MessageSend.syncAuto(MessageEntiy.TYPE_AUTO_STATUS);
         }

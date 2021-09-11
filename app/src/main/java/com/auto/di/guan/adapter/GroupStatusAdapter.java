@@ -107,7 +107,6 @@ public class GroupStatusAdapter extends BaseQuickAdapter<GroupInfo, BaseViewHold
                                         return;
                                     }
                                     info.setGroupTime(i * Entiy.RUN_TIME + info.getGroupTime());
-                                    LogUtils.e("自动轮灌结束时间", DateUtils.stampToDate(info.getGroupEndTime()));
                                     GroupInfoSql.updateGroup(info);
 //                                    EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_TIME));
                                 }
@@ -134,6 +133,8 @@ public class GroupStatusAdapter extends BaseQuickAdapter<GroupInfo, BaseViewHold
                         @Override
                         public void onDialogOkClick(String value) {
                             info.setGroupStop(0);
+                            info.setGroupEndTime(System.currentTimeMillis());
+                            LogUtils.e("轮灌开始时间  暂停开始  ", DateUtils.stampToDate(info.getGroupEndTime()));
                             GroupInfoSql.updateGroup(info);
                             EventBus.getDefault().post(new AutoTaskEvent(Entiy.RUN_DO_START, info));
                             notifyDataSetChanged();

@@ -90,6 +90,7 @@ public class GroupOptionActivity extends Activity  {
 						groupInfo.setGroupRunTime(0);
 						groupInfo.setGroupLevel(0);
 						groupInfo.setGroupTime(0);
+						groupInfo.setGroupEndTime(0);
 					}
 
 					int level = groupInfo.getGroupLevel();

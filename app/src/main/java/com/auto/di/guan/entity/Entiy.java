@@ -72,7 +72,7 @@ public class Entiy {
     /**
      * 设置轮灌定时器  1000ms
      */
-    public static final int RUN_TIME_COUNT = 20000;
+    public static final int RUN_TIME_COUNT = 1000;
     /**
      * 暂停轮灌计时
      */

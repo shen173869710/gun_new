@@ -40,6 +40,7 @@ import com.auto.di.guan.jobqueue.TaskManager;
 import com.auto.di.guan.jobqueue.task.TaskFactory;
 import com.auto.di.guan.rtm.ChatManager;
 import com.auto.di.guan.rtm.MessageEntiy;
+import com.auto.di.guan.utils.DateUtils;
 import com.auto.di.guan.utils.FloatStatusUtil;
 import com.auto.di.guan.utils.FloatWindowUtil;
 import com.auto.di.guan.utils.LogUtils;
@@ -74,9 +75,14 @@ public class MainActivity extends SerialPortActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             GroupInfo groupInfo = null;
+
             if (msg.obj != null) {
                 groupInfo = (GroupInfo) msg.obj;
-                groupInfo.setGroupRunTime(groupInfo.getGroupRunTime() + 20);
+                long time = System.currentTimeMillis() - groupInfo.getGroupEndTime();
+//                LogUtils.i("轮灌开始时间  计算时间  ", "time = "+time);
+                String step = String.valueOf(time/1000);
+                LogUtils.i("轮灌开始时间  时间差  ", "step = "+step);
+//                groupInfo.setGroupRunTime(Integer.valueOf(step));
                 curRunTime = groupInfo.getGroupTime() - groupInfo.getGroupRunTime();
                 /**如果运行时间到呢,**/
                 if (groupInfo.getGroupTime() <= groupInfo.getGroupRunTime()) {

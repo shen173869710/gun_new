@@ -68,7 +68,8 @@ public class FloatStatusUtil {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (groupInfo == null && groupInfo.getGroupStatus() == 0) {
+                if (groupInfo == null || groupInfo.getGroupStatus() == 0) {
+                    initProgess(null);
                     ToastUtils.showLongToast("当前没有运行的设备");
                     return;
                 }
