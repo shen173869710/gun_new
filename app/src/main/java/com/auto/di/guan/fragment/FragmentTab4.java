@@ -14,6 +14,7 @@ import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.event.Fragment4Event;
+import com.auto.di.guan.utils.DiffCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,29 +37,28 @@ public class FragmentTab4 extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_4, null);
         EventBus.getDefault().register(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.fragment_4_gridview);
-        deviceInfos = DeviceInfoSql.queryDeviceList();
+        deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
         adapter = new MyGridOpenAdapter(deviceInfos);
+        adapter.setDiffCallback(new DiffCallback());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Entiy.GUN_COLUMN));
-        recyclerView.setAdapter(adapter);;
+        recyclerView.setAdapter(adapter);
+        recyclerView.setItemViewCacheSize(200);
+        recyclerView.setDrawingCacheEnabled(true);//保存绘图，提高速度
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         return view;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFragment4Update(Fragment4Event event) {
         if (adapter != null) {
-//            deviceInfos.clear();
-//            deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
-//            adapter.notifyDataSetChanged();
-            adapter.setNewData(DeviceInfoSql.queryDeviceList());
+            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
         }
     }
-
-    ;
 
     @Override
     public void refreshData() {
         if (adapter != null) {
-            adapter.setNewData(DeviceInfoSql.queryDeviceList());
+            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
         }
     }
 

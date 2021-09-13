@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.auto.di.guan.R;
 import com.auto.di.guan.adapter.MyGridAdapter;
 import com.auto.di.guan.db.DeviceInfo;
@@ -13,9 +15,11 @@ import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.dialog.MainShowDialog;
 import com.auto.di.guan.dialog.MainShowInputDialog;
 import com.auto.di.guan.entity.Entiy;
+import com.auto.di.guan.utils.DiffCallback;
 import com.auto.di.guan.utils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +35,11 @@ public class FragmentTab0 extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_0, null);
-        LogUtils.e("fragment","     34--"+System.currentTimeMillis());
         recyclerView = (RecyclerView) view.findViewById(R.id.fragment_0_gridview);
         deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
         adapter = new MyGridAdapter(deviceInfos);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Entiy.GUN_COLUMN));
+        adapter.setDiffCallback(new DiffCallback());
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, Entiy.GUN_COLUMN));
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(200);
         recyclerView.setDrawingCacheEnabled(true);//保存绘图，提高速度
@@ -50,7 +54,7 @@ public class FragmentTab0 extends BaseFragment {
                         public void onClick(View v) {
                             info.bindDevice(info.getDeviceId());
                             DeviceInfoSql.updateDevice(info);
-                            adapter.setNewData(DeviceInfoSql.queryDeviceList());
+                            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
                         }
                     });
                 } else {
@@ -64,14 +68,13 @@ public class FragmentTab0 extends BaseFragment {
                         public void onClick(View v) {
                             info.unBindDevice(info.getDeviceId());
                             DeviceInfoSql.updateDevice(info);
-                            adapter.setNewData(DeviceInfoSql.queryDeviceList());
+                            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
                         }
                     });
                 }
 
             }
         });
-        LogUtils.e("fragment","     73--"+System.currentTimeMillis());
         return view;
     }
 
@@ -79,11 +82,7 @@ public class FragmentTab0 extends BaseFragment {
     @Override
     public void refreshData() {
         if (adapter != null) {
-            LogUtils.e("fragment","     81--"+System.currentTimeMillis());
-            deviceInfos.clear();
-            deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
-            adapter.notifyDataSetChanged();
-            LogUtils.e("fragment","     84--"+System.currentTimeMillis());
+            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
         }
     }
 

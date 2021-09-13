@@ -149,7 +149,7 @@ public class MainActivity extends SerialPortActivity {
             }
         },4000);
 
-        FloatStatusUtil.getInstance().show();
+//        FloatStatusUtil.getInstance().show();
 
         //查询有没有自动轮毂
         List<GroupInfo> list = GroupInfoSql.queryOpenGroupList();

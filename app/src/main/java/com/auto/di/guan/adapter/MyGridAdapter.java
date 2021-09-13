@@ -2,6 +2,7 @@ package com.auto.di.guan.adapter;
 
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,6 +13,7 @@ import com.auto.di.guan.db.ControlInfo;
 import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.utils.GlideUtil;
+import com.auto.di.guan.utils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 
@@ -134,5 +136,6 @@ public class MyGridAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHolder> 
                 grid_item_right_layout.setVisibility(View.VISIBLE);
             }
         }
+        LogUtils.e("111", "postion = "+holder.getLayoutPosition());
     }
 }

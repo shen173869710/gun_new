@@ -16,6 +16,7 @@ import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.event.BindIdEvent;
+import com.auto.di.guan.utils.DiffCallback;
 import com.auto.di.guan.utils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -36,11 +37,11 @@ public class FragmentTab1 extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_1, null);
-        LogUtils.e("fragment","     39--"+System.currentTimeMillis());
         recyclerView = (RecyclerView) view.findViewById(R.id.fragment_1_gridview);
         deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
         adapter = new MyGridAdapter(deviceInfos);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Entiy.GUN_COLUMN));
+        adapter.setDiffCallback(new DiffCallback());
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, Entiy.GUN_COLUMN));
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(200);
         recyclerView.setDrawingCacheEnabled(true);//保存绘图，提高速度
@@ -61,18 +62,13 @@ public class FragmentTab1 extends BaseFragment {
             }
         });
         EventBus.getDefault().register(this);
-        LogUtils.e("fragment","     64--"+System.currentTimeMillis());
         return view;
     }
 
     @Override
     public void refreshData() {
         if (adapter != null) {
-            LogUtils.e("fragment","     70--"+System.currentTimeMillis());
-            deviceInfos.clear();
-            deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
-            adapter.notifyDataSetChanged();
-            LogUtils.e("fragment","     73--"+System.currentTimeMillis());
+            adapter.setDiffNewData(DeviceInfoSql.queryDeviceList());
         }
     }
 

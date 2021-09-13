@@ -18,7 +18,7 @@ public class WelcomeActivity extends Activity{
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					Entiy.GUN_COLUMN = BaseApp.getUser().getTrunkPipeMaxNum();
+					Entiy.GUN_COLUMN = 10;
 					startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
 					finish();
 				}

@@ -182,81 +182,81 @@ public class ActivationActivity extends IBaseActivity<LoginPresenter> implements
         LogUtils.e("---------",""+msg);
 		ToastUtils.showLongToast(""+msg);
 
-//		User user = new User();
-//		user.setUserId(155l);
-//		user.setAvatar("");
-//		user.setLoginName("13300000000");
-//		user.setParentId(123456l);
-//		user.setPhonenumber("13300000000");
-//		user.setProjectName(Entiy.GUN_NAME);
-//		user.setProjectId("00006");
-//		user.setProjectGroupId("00006");
-//		user.setPileOutNum(Entiy.GUN_COLUMN);
-//		user.setTrunkPipeNum(Entiy.GUN_COLUMN);
-//		user.setMemberId(152l);
-//		user.setPassword("123456");
-//		UserSql.insertUser(user);
-//		BaseApp.setUser(user);
-//		int num = user.getPileOutNum()*user.getTrunkPipeNum();
+		User user = new User();
+		user.setUserId(155l);
+		user.setAvatar("");
+		user.setLoginName("13300000000");
+		user.setParentId(123456l);
+		user.setPhonenumber("13300000000");
+		user.setProjectName(Entiy.GUN_NAME);
+		user.setProjectId("00006");
+		user.setProjectGroupId("00006");
+		user.setPileOutNum(Entiy.GUN_COLUMN);
+		user.setTrunkPipeNum(Entiy.GUN_COLUMN);
+		user.setMemberId(152l);
+		user.setPassword("123456");
+		UserSql.insertUser(user);
+		BaseApp.setUser(user);
+		int num = user.getPileOutNum()*user.getTrunkPipeNum();
+
+		Entiy.GUN_COLUMN = 10;
+
+		List<DeviceInfo>deviceInfos = new ArrayList<>();
+		if(DeviceInfoSql.queryDeviceCount() <= 0) {
+			for (int i = 0 ; i < num; i++) {
+				DeviceInfo deviceInfo = new DeviceInfo();
+				deviceInfo.setDeviceName("设备_"+(i+1));
+				deviceInfo.setDeviceStatus(1);
+				deviceInfo.setDeviceSort(i+1);
+				deviceInfo.setDeviceId(i+1);
+				deviceInfo.setProtocalId(Entiy.createProtocalId(i+1));
+				ArrayList<ControlInfo>controlInfos = new ArrayList<>();
+				ControlInfo controlInfo0 = new ControlInfo(deviceInfo.getDeviceId(),deviceInfo.getDeviceSort()+"_1", 1);
+				controlInfo0.setValveId(deviceInfo.getDeviceSort()*2-1);
+				controlInfo0.setProtocalId("0");
+				controlInfo0.setDeviceProtocalId("10000");
+				controlInfo0.setValveAlias(deviceInfo.getDeviceSort()+"-"+controlInfo0.getValveName());
+				ControlInfo controlInfo1 = new ControlInfo(deviceInfo.getDeviceId(),deviceInfo.getDeviceSort()+"_2",1);
+				controlInfo1.setValveAlias(deviceInfo.getDeviceSort()+"_"+controlInfo1.getValveName());
+				controlInfo1.setValveId(deviceInfo.getDeviceSort()*2);
+				controlInfo1.setProtocalId("1");
+				controlInfo1.setDeviceProtocalId("10000");
+				controlInfos.add(controlInfo0);
+				controlInfos.add(controlInfo1);
+				deviceInfo.setValveDeviceSwitchList(controlInfos);
+				deviceInfos.add(deviceInfo);
+//				if (i < 9) {
+//					controlInfo0.setValveStatus(2);
+//					controlInfo1.setValveStatus(2);
+//				}
 //
-//		Entiy.GUN_COLUMN = user.getPileOutNum();
-//
-//		List<DeviceInfo>deviceInfos = new ArrayList<>();
-//		if(DeviceInfoSql.queryDeviceCount() <= 0) {
-//			for (int i = 0 ; i < num; i++) {
-//				DeviceInfo deviceInfo = new DeviceInfo();
-//				deviceInfo.setDeviceName("设备_"+(i+1));
-//				deviceInfo.setDeviceStatus(0);
-//				deviceInfo.setDeviceSort(i+1);
-//				deviceInfo.setDeviceId(i+1);
-//				deviceInfo.setProtocalId(Entiy.createProtocalId(i+1));
-//				ArrayList<ControlInfo>controlInfos = new ArrayList<>();
-//				ControlInfo controlInfo0 = new ControlInfo(deviceInfo.getDeviceId(),deviceInfo.getDeviceSort()+"_1", 0);
-//				controlInfo0.setValveId(deviceInfo.getDeviceSort()*2-1);
-//				controlInfo0.setProtocalId("0");
-//				controlInfo0.setDeviceProtocalId("10000");
-//				controlInfo0.setValveAlias(deviceInfo.getDeviceSort()+"-"+controlInfo0.getValveName());
-//				ControlInfo controlInfo1 = new ControlInfo(deviceInfo.getDeviceId(),deviceInfo.getDeviceSort()+"_2",0);
-//				controlInfo1.setValveAlias(deviceInfo.getDeviceSort()+"_"+controlInfo1.getValveName());
-//				controlInfo1.setValveId(deviceInfo.getDeviceSort()*2);
-//				controlInfo1.setProtocalId("1");
-//				controlInfo1.setDeviceProtocalId("10000");
-//				controlInfos.add(controlInfo0);
-//				controlInfos.add(controlInfo1);
-//				deviceInfo.setValveDeviceSwitchList(controlInfos);
-//				deviceInfos.add(deviceInfo);
-////				if (i < 9) {
-////					controlInfo0.setValveStatus(2);
-////					controlInfo1.setValveStatus(2);
-////				}
-////
-////				if(i == 1 || i == 3 || i == 5 || i == 11) {
-////					deviceInfo.setElectricQuantity(i);
-////					controlInfo1.setValveStatus(3);
-////				}else {
-////					deviceInfo.setElectricQuantity(88);
-////				}
-//
-//			}
-//			DeviceInfoSql.insertDeviceInfoList(deviceInfos);
-//		}
-//
-//
-//		if (LevelInfoSql.queryLevelInfoList().size() == 0) {
-//			List<LevelInfo> levelInfos = new ArrayList<>();
-//			for (int i = 1; i < 200; i++) {
-//				LevelInfo info = new LevelInfo();
-//				info.setLevelId(i);
-//				info.setIsGroupUse(false);
-//				info.setIsLevelUse(false);
-//				levelInfos.add(info);
-//			}
-//			LevelInfoSql.insertLevelInfoList(levelInfos);
-//		}
-//
-//		startActivity(new Intent(ActivationActivity.this, MainActivity.class));
-//		finish();
-//		ToastUtils.showLongToast(""+msg);
+//				if(i == 1 || i == 3 || i == 5 || i == 11) {
+//					deviceInfo.setElectricQuantity(i);
+//					controlInfo1.setValveStatus(3);
+//				}else {
+//					deviceInfo.setElectricQuantity(88);
+//				}
+
+			}
+			DeviceInfoSql.insertDeviceInfoList(deviceInfos);
+		}
+
+
+		if (LevelInfoSql.queryLevelInfoList().size() == 0) {
+			List<LevelInfo> levelInfos = new ArrayList<>();
+			for (int i = 1; i < 200; i++) {
+				LevelInfo info = new LevelInfo();
+				info.setLevelId(i);
+				info.setIsGroupUse(false);
+				info.setIsLevelUse(false);
+				levelInfos.add(info);
+			}
+			LevelInfoSql.insertLevelInfoList(levelInfos);
+		}
+
+		startActivity(new Intent(ActivationActivity.this, MainActivity.class));
+		finish();
+		ToastUtils.showLongToast(""+msg);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
