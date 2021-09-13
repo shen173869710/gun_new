@@ -15,6 +15,7 @@ import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.event.Fragment4Event;
 import com.auto.di.guan.utils.DiffCallback;
+import com.auto.di.guan.utils.DiffStautsCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,7 +40,7 @@ public class FragmentTab4 extends BaseFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.fragment_4_gridview);
         deviceInfos.addAll(DeviceInfoSql.queryDeviceList());
         adapter = new MyGridOpenAdapter(deviceInfos);
-        adapter.setDiffCallback(new DiffCallback());
+        adapter.setDiffCallback(new DiffStautsCallback());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Entiy.GUN_COLUMN));
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(200);

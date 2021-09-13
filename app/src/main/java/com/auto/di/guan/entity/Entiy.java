@@ -1,7 +1,12 @@
 package com.auto.di.guan.entity;
 
 import com.auto.di.guan.R;
+import com.auto.di.guan.db.DeviceInfo;
+import com.auto.di.guan.db.sql.DeviceInfoSql;
 import com.auto.di.guan.utils.LogUtils;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/16.
@@ -451,5 +456,25 @@ public class Entiy {
             R.mipmap.group49,
             R.mipmap.group50,
     };
+
+    public static HashMap<Integer, Boolean> getStatu() {
+        HashMap<Integer, Boolean> hashMap = new HashMap<>();
+        List<DeviceInfo> infoList = DeviceInfoSql.queryDeviceList();
+        if (infoList != null) {
+            int size = infoList.size();
+            for (int i = 0; i < size; i++) {
+                DeviceInfo info = infoList.get(i);
+                int line = info.getDeviceSort()%GUN_COLUMN+1;
+                if (hashMap.containsKey(line)) {
+                    if (info.getRemark() != null && info.getRemark().equals("1")) {
+                        hashMap.put(line,true);
+                    }
+                }else {
+                    hashMap.put(line,false);
+                }
+            }
+        }
+        return hashMap;
+    }
 
 }
