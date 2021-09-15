@@ -69,7 +69,7 @@ public class MyGridOpenAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHold
                 grid_item_device_name.setText(deviceInfo.getDeviceName()+"");
                 grid_item_device_name.setVisibility(View.VISIBLE);
             }
-            GlideUtil.loadDeviceImage(getContext(),grid_item_device, deviceInfo);
+            GlideUtil.loadDeviceRun(getContext(),grid_item_device, deviceInfo);
             grid_item_device.setVisibility(View.VISIBLE);
             grid_item_left_layout.setVisibility(View.VISIBLE);
             grid_item_device_value.setVisibility(View.VISIBLE);

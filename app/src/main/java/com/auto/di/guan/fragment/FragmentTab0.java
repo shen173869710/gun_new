@@ -16,7 +16,6 @@ import com.auto.di.guan.dialog.MainShowDialog;
 import com.auto.di.guan.dialog.MainShowInputDialog;
 import com.auto.di.guan.entity.Entiy;
 import com.auto.di.guan.utils.DiffCallback;
-import com.auto.di.guan.utils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 

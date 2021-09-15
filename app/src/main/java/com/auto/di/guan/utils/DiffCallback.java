@@ -67,10 +67,10 @@ public class DiffCallback extends DiffUtil.ItemCallback<DeviceInfo> {
                 && StringEqual(oldInfo1.getValveAlias(),newInfo1.getValveAlias())
                 && oldInfo1.getValveStatus() == newInfo1.getValveStatus()
         ) {
-            LogUtils.e(TAG, "内容相等");
+            LogUtils.i(TAG, "内容相等");
             return  true;
         }
-        LogUtils.e(TAG, "内容变化");
+        LogUtils.i(TAG, "内容变化");
         return false;
     }
 

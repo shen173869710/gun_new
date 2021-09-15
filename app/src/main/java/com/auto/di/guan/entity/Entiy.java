@@ -1,5 +1,7 @@
 package com.auto.di.guan.entity;
 
+import android.text.TextUtils;
+
 import com.auto.di.guan.R;
 import com.auto.di.guan.db.DeviceInfo;
 import com.auto.di.guan.db.sql.DeviceInfoSql;
@@ -464,13 +466,12 @@ public class Entiy {
             int size = infoList.size();
             for (int i = 0; i < size; i++) {
                 DeviceInfo info = infoList.get(i);
-                int line = info.getDeviceSort()%GUN_COLUMN+1;
-                if (hashMap.containsKey(line)) {
-                    if (info.getRemark() != null && info.getRemark().equals("1")) {
-                        hashMap.put(line,true);
-                    }
-                }else {
+                int line = (info.getDeviceSort()-1)/GUN_COLUMN+1;
+                if (!hashMap.containsKey(line)) {
                     hashMap.put(line,false);
+                }
+                if (hashMap.containsKey(line) && !TextUtils.isEmpty(info.getRemark()) && info.getRemark().equals("1")) {
+                    hashMap.put(line,true);
                 }
             }
         }

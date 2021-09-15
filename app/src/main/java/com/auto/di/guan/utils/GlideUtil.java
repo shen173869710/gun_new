@@ -1,6 +1,7 @@
 package com.auto.di.guan.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import com.auto.di.guan.BaseApp;
 import com.auto.di.guan.R;
@@ -17,15 +18,36 @@ public class GlideUtil {
      */
     public  static void loadDeviceImage(Context context, ImageView imageView, DeviceInfo deviceInfo) {
         int resId = R.drawable.device_stop;
-        if (deviceInfo.getDeviceStatus() == 0) {
-            return;
+        Glide.with(context).load(resId).into(imageView);
+//        if (deviceInfo.getDeviceStatus() == 0) {
+//            return;
+//        }
+//
+//        if (deviceInfo.getValveDeviceSwitchList().get(0).getValveStatus() == Entiy.CONTROL_STATUS＿RUN
+//                || deviceInfo.getValveDeviceSwitchList().get(1).getValveStatus() == Entiy.CONTROL_STATUS＿RUN) {
+//            resId = R.drawable.device_run;
+//        }
+//        Glide.with(BaseApp.getContext()).asGif().load(resId).into(imageView);
+//        try {
+//            GifDrawable gifFromResource = new GifDrawable(context.getResources(), resId);
+//            imageView.setImageDrawable(gifFromResource);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+    }
+
+
+    public  static void loadDeviceRun(Context context, ImageView imageView, DeviceInfo deviceInfo) {
+//        if (deviceInfo.getDeviceStatus() == 0) {
+//            return;
+//        }
+        if (!TextUtils.isEmpty(deviceInfo.getRemark())&& deviceInfo.getRemark().equals("1")) {
+            Glide.with(BaseApp.getContext()).asGif().load(R.drawable.device_run).into(imageView);
+        }else {
+            Glide.with(BaseApp.getContext()).load(R.drawable.device_stop).into(imageView);
         }
 
-        if (deviceInfo.getValveDeviceSwitchList().get(0).getValveStatus() == Entiy.CONTROL_STATUS＿RUN
-                || deviceInfo.getValveDeviceSwitchList().get(1).getValveStatus() == Entiy.CONTROL_STATUS＿RUN) {
-            resId = R.drawable.device_run;
-        }
-        Glide.with(BaseApp.getContext()).asGif().load(resId).into(imageView);
 //        try {
 //            GifDrawable gifFromResource = new GifDrawable(context.getResources(), resId);
 //            imageView.setImageDrawable(gifFromResource);
