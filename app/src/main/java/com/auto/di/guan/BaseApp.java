@@ -1,13 +1,7 @@
 package com.auto.di.guan;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.Entity;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -29,18 +23,14 @@ import com.auto.di.guan.utils.FloatWindowUtil;
 import com.auto.di.guan.utils.GsonUtil;
 import com.auto.di.guan.utils.LogUtils;
 import com.auto.di.guan.utils.SPUtils;
-import com.github.moduth.blockcanary.BlockCanary;
-import com.github.moduth.blockcanary.BlockCanaryContext;
-import com.github.moduth.blockcanary.internal.BlockInfo;
+//import com.github.moduth.blockcanary.BlockCanary;
 import com.google.gson.Gson;
-//import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.InvalidParameterException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -96,7 +86,7 @@ public class BaseApp extends MultiDexApplication {
         CrashHandler.getInstance().init(this);
         mChatManager = new ChatManager(this);
         mChatManager.init();
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+//        BlockCanary.install(this, new AppBlockCanaryContext()).start();
     }
 
 
@@ -368,154 +358,154 @@ public class BaseApp extends MultiDexApplication {
     }
 
 
-    public class AppBlockCanaryContext extends BlockCanaryContext {
-        // 实现各种上下文，包括应用标示符，用户uid，网络类型，卡慢判断阙值，Log保存位置等
-
-        /**
-         * Implement in your project.
-         *
-         * @return Qualifier which can specify this installation, like version + flavor.
-         */
-        public String provideQualifier() {
-            return "unknown";
-        }
-
-        /**
-         * Implement in your project.
-         *
-         * @return user id
-         */
-        public String provideUid() {
-            return "uid";
-        }
-
-        /**
-         * Network type
-         *
-         * @return {@link String} like 2G, 3G, 4G, wifi, etc.
-         */
-        public String provideNetworkType() {
-            return "unknown";
-        }
-
-        /**
-         * Config monitor duration, after this time BlockCanary will stop, use
-         * with {@code BlockCanary}'s isMonitorDurationEnd
-         *
-         * @return monitor last duration (in hour)
-         */
-        public int provideMonitorDuration() {
-            return -1;
-        }
-
-        /**
-         * Config block threshold (in millis), dispatch over this duration is regarded as a BLOCK. You may set it
-         * from performance of device.
-         *
-         * @return threshold in mills
-         */
-        public int provideBlockThreshold() {
-            return 300;
-        }
-
-        /**
-         * Thread stack dump interval, use when block happens, BlockCanary will dump on main thread
-         * stack according to current sample cycle.
-         * <p>
-         * Because the implementation mechanism of Looper, real dump interval would be longer than
-         * the period specified here (especially when cpu is busier).
-         * </p>
-         *
-         * @return dump interval (in millis)
-         */
-        public int provideDumpInterval() {
-            return provideBlockThreshold();
-        }
-
-        /**
-         * Path to save log, like "/blockcanary/", will save to sdcard if can.
-         *
-         * @return path of log files
-         */
-        public String providePath() {
-            return "/blockcanary/";
-        }
-
-        /**
-         * If need notification to notice block.
-         *
-         * @return true if need, else if not need.
-         */
-        public boolean displayNotification() {
-            return true;
-        }
-
-        /**
-         * Implement in your project, bundle files into a zip file.
-         *
-         * @param src  files before compress
-         * @param dest files compressed
-         * @return true if compression is successful
-         */
-        public boolean zip(File[] src, File dest) {
-            return false;
-        }
-
-        /**
-         * Implement in your project, bundled log files.
-         *
-         * @param zippedFile zipped file
-         */
-        public void upload(File zippedFile) {
-            throw new UnsupportedOperationException();
-        }
-
-
-        /**
-         * Packages that developer concern, by default it uses process name,
-         * put high priority one in pre-order.
-         *
-         * @return null if simply concern only package with process name.
-         */
-        public List<String> concernPackages() {
-            return null;
-        }
-
-        /**
-         * Filter stack without any in concern package, used with @{code concernPackages}.
-         *
-         * @return true if filter, false it not.
-         */
-        public boolean filterNonConcernStack() {
-            return false;
-        }
-
-        /**
-         * Provide white list, entry in white list will not be shown in ui list.
-         *
-         * @return return null if you don't need white-list filter.
-         */
-        public List<String> provideWhiteList() {
-            LinkedList<String> whiteList = new LinkedList<>();
-            whiteList.add("org.chromium");
-            return whiteList;
-        }
-
-        /**
-         * Whether to delete files whose stack is in white list, used with white-list.
-         *
-         * @return true if delete, false it not.
-         */
-        public boolean deleteFilesInWhiteList() {
-            return true;
-        }
-
-        /**
-         * Block interceptor, developer may provide their own actions.
-         */
-        public void onBlock(Context context, BlockInfo blockInfo) {
-
-        }
-    }
+//    public class AppBlockCanaryContext extends BlockCanaryContext {
+//        // 实现各种上下文，包括应用标示符，用户uid，网络类型，卡慢判断阙值，Log保存位置等
+//
+//        /**
+//         * Implement in your project.
+//         *
+//         * @return Qualifier which can specify this installation, like version + flavor.
+//         */
+//        public String provideQualifier() {
+//            return "unknown";
+//        }
+//
+//        /**
+//         * Implement in your project.
+//         *
+//         * @return user id
+//         */
+//        public String provideUid() {
+//            return "uid";
+//        }
+//
+//        /**
+//         * Network type
+//         *
+//         * @return {@link String} like 2G, 3G, 4G, wifi, etc.
+//         */
+//        public String provideNetworkType() {
+//            return "unknown";
+//        }
+//
+//        /**
+//         * Config monitor duration, after this time BlockCanary will stop, use
+//         * with {@code BlockCanary}'s isMonitorDurationEnd
+//         *
+//         * @return monitor last duration (in hour)
+//         */
+//        public int provideMonitorDuration() {
+//            return -1;
+//        }
+//
+//        /**
+//         * Config block threshold (in millis), dispatch over this duration is regarded as a BLOCK. You may set it
+//         * from performance of device.
+//         *
+//         * @return threshold in mills
+//         */
+//        public int provideBlockThreshold() {
+//            return 300;
+//        }
+//
+//        /**
+//         * Thread stack dump interval, use when block happens, BlockCanary will dump on main thread
+//         * stack according to current sample cycle.
+//         * <p>
+//         * Because the implementation mechanism of Looper, real dump interval would be longer than
+//         * the period specified here (especially when cpu is busier).
+//         * </p>
+//         *
+//         * @return dump interval (in millis)
+//         */
+//        public int provideDumpInterval() {
+//            return provideBlockThreshold();
+//        }
+//
+//        /**
+//         * Path to save log, like "/blockcanary/", will save to sdcard if can.
+//         *
+//         * @return path of log files
+//         */
+//        public String providePath() {
+//            return "/blockcanary/";
+//        }
+//
+//        /**
+//         * If need notification to notice block.
+//         *
+//         * @return true if need, else if not need.
+//         */
+//        public boolean displayNotification() {
+//            return true;
+//        }
+//
+//        /**
+//         * Implement in your project, bundle files into a zip file.
+//         *
+//         * @param src  files before compress
+//         * @param dest files compressed
+//         * @return true if compression is successful
+//         */
+//        public boolean zip(File[] src, File dest) {
+//            return false;
+//        }
+//
+//        /**
+//         * Implement in your project, bundled log files.
+//         *
+//         * @param zippedFile zipped file
+//         */
+//        public void upload(File zippedFile) {
+//            throw new UnsupportedOperationException();
+//        }
+//
+//
+//        /**
+//         * Packages that developer concern, by default it uses process name,
+//         * put high priority one in pre-order.
+//         *
+//         * @return null if simply concern only package with process name.
+//         */
+//        public List<String> concernPackages() {
+//            return null;
+//        }
+//
+//        /**
+//         * Filter stack without any in concern package, used with @{code concernPackages}.
+//         *
+//         * @return true if filter, false it not.
+//         */
+//        public boolean filterNonConcernStack() {
+//            return false;
+//        }
+//
+//        /**
+//         * Provide white list, entry in white list will not be shown in ui list.
+//         *
+//         * @return return null if you don't need white-list filter.
+//         */
+//        public List<String> provideWhiteList() {
+//            LinkedList<String> whiteList = new LinkedList<>();
+//            whiteList.add("org.chromium");
+//            return whiteList;
+//        }
+//
+//        /**
+//         * Whether to delete files whose stack is in white list, used with white-list.
+//         *
+//         * @return true if delete, false it not.
+//         */
+//        public boolean deleteFilesInWhiteList() {
+//            return true;
+//        }
+//
+//        /**
+//         * Block interceptor, developer may provide their own actions.
+//         */
+//        public void onBlock(Context context, BlockInfo blockInfo) {
+//
+//        }
+//    }
 
 }
