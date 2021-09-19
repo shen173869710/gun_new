@@ -43,9 +43,9 @@ public class GlideUtil {
 //            return;
 //        }
         if (!TextUtils.isEmpty(deviceInfo.getRemark())&& deviceInfo.getRemark().equals("1")) {
-            Glide.with(BaseApp.getContext()).asGif().load(R.drawable.device_run).into(imageView);
+            Glide.with(context).asGif().load(R.drawable.device_run).into(imageView);
         }else {
-            Glide.with(BaseApp.getContext()).load(R.drawable.device_stop).into(imageView);
+            Glide.with(context).load(R.drawable.device_stop).into(imageView);
         }
 
 //        try {
@@ -61,11 +61,11 @@ public class GlideUtil {
      *      加载组信息
      * @param imageView
      */
-    public  static void loadGroupImage(ImageView imageView, int getGroupId) {
+    public  static void loadGroupImage(Context context,ImageView imageView, int getGroupId) {
         if (getGroupId < 1 || getGroupId > 50 ) {
             return;
         }
-        Glide.with(BaseApp.getContext()).load(Entiy.GROUP_IMAGE[getGroupId]).into(imageView);
+        Glide.with(context).load(Entiy.GROUP_IMAGE[getGroupId]).into(imageView);
     }
 
     /**

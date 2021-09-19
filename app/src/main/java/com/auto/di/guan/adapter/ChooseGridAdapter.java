@@ -88,7 +88,7 @@ public class ChooseGridAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHold
                 } else {
                     grid_item_left_group.setVisibility(View.VISIBLE);
 //                    grid_item_left_group.setText(info1.getValveGroupId() + "");
-                    GlideUtil.loadGroupImage(grid_item_left_group, info1.getValveGroupId());
+                    GlideUtil.loadGroupImage(getContext(),grid_item_left_group, info1.getValveGroupId());
                 }
 
                 if (info1.getValveGroupId() > 0) {
@@ -131,7 +131,7 @@ public class ChooseGridAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHold
                 } else {
                     grid_item_right_group.setVisibility(View.VISIBLE);
 //                    grid_item_right_group.setText(info2.getValveGroupId() + "");
-                    GlideUtil.loadGroupImage(grid_item_right_group, info2.getValveGroupId());
+                    GlideUtil.loadGroupImage(getContext(),grid_item_right_group, info2.getValveGroupId());
                 }
 
                 if (info2.getValveGroupId() > 0) {

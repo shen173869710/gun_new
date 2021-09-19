@@ -88,7 +88,7 @@ public class MyGridAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHolder> 
                 grid_item_left_group.setVisibility(View.VISIBLE);
 //                grid_item_left_group.setText(controlInfo0.getValveGroupId() + "");
 
-                GlideUtil.loadGroupImage(grid_item_left_group, controlInfo0.getValveGroupId());
+                GlideUtil.loadGroupImage(getContext(),grid_item_left_group, controlInfo0.getValveGroupId());
             }
             if (controlInfo0.getValveStatus() == 0) {
                 grid_item_left_image.setVisibility(View.INVISIBLE);
@@ -110,7 +110,7 @@ public class MyGridAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHolder> 
             } else {
                 grid_item_right_group.setVisibility(View.VISIBLE);
 //                grid_item_right_group.setText(controlInfo1.getValveGroupId() + "");
-                GlideUtil.loadGroupImage(grid_item_right_group, controlInfo1.getValveGroupId());
+                GlideUtil.loadGroupImage(getContext(),grid_item_right_group, controlInfo1.getValveGroupId());
             }
             if (controlInfo1.getValveStatus() == 0) {
                 grid_item_right_image.setVisibility(View.INVISIBLE);
